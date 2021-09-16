@@ -1,0 +1,16 @@
+.hello{
+border: solid;
+    width: 311px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    margin-left: 6%;
+    border-radius: 13px;
+    margin-top: 6%;
+    padding-bottom: 3%;
+}
+#logoentree {
+    width: 83%;
+}
