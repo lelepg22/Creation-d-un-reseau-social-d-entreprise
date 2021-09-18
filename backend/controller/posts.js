@@ -67,8 +67,30 @@ exports.deleteAcc = (req, res, next) => {
 })// end query select
 }// end deleteAcc
 
-  
+exports.ByUser = (req, res, next) => {
 
+  console.log('searchByUser')
+  var con = mysql.createConnection(mysqlLogin);
+
+  con.connect((err) => {
+    if (err){
+        return res.status(401).json({message: 'impossible de se connecter à la BDD'})
+    }
+    console.log("Connecté à la base de donnée");
+    
+  });
+
+  con.query(`SELECT users.utilisateur, postsDetails.userInPost, postsDetails.commentedPost,postsDetails.thePostId, postsDetails.thePostTitle, postsDetails.thePostArticle, postsDetails.thePostLink, DATE_FORMAT(timeStampOnPost, '%d-%m-%Y à %T') AS timeStampOnPost  FROM postsDetails INNER JOIN users WHERE ${req.body.userId} = postsDetails.createur AND ${req.body.userId}  = users.Id ` , (err,result) =>{
+    if(err){
+        console.log(err)
+        con.end()
+        return res.status(401).json({message: err})
+    }
+    console.log(result)
+    con.end()
+    return res.status(200).json(result)
+  })
+}
 
 exports.openPost = (req, res, next) => {
 
@@ -83,7 +105,7 @@ exports.openPost = (req, res, next) => {
     
   });
 
-  con.query(`SELECT users.utilisateur, postsDetails.userInPost, postsDetails.commentedPost,postsDetails.thePostId, postsDetails.thePostTitle, postsDetails.thePostArticle, postsDetails.thePostLink, DATE_FORMAT(timeStampOnPost, '%d-%m-%Y à %T') AS timeStampOnPost  FROM postsDetails INNER JOIN users WHERE ${req.body.thePostId} = postsDetails.thePostId AND postsDetails.createur = users.Id ` , (err,result) =>{
+  con.query(`SELECT users.utilisateur, postsDetails.userInPost, postsDetails.commentedPost,postsDetails.thePostId, postsDetails.thePostTitle, postsDetails.thePostArticle,postsDetails.createur, postsDetails.thePostLink, DATE_FORMAT(timeStampOnPost, '%d-%m-%Y à %T') AS timeStampOnPost  FROM postsDetails INNER JOIN users WHERE ${req.body.thePostId} = postsDetails.thePostId AND postsDetails.createur = users.Id ` , (err,result) =>{
     if(err){
         console.log(err)
         con.end()

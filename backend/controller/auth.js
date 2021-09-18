@@ -18,7 +18,7 @@ con.connect(function (err) {
 });
 
 exports.headers = (req, res, next) => {
-  console.log("requete Authtatatata");
+  console.log("requete Auth");
 
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

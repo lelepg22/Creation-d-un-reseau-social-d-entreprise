@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.use(posts_ctrl.headers);
 
+
 router.post('/deleteAcc', posts_ctrl.deleteAcc)
 router.post('/deleteThisPost', posts_ctrl.deleteThisPost)
 router.post('/getMePosts', posts_ctrl.getMePosts)
@@ -22,7 +23,7 @@ router.post('/openPost', posts_ctrl.openPost)
 router.get('/posts',posts_ctrl.getPosts)
 router.get('/users', posts_ctrl.getUsers)
 router.post('/createPost',auth, posts_ctrl.createPost)
-
+router.post('/ByUser', posts_ctrl.ByUser)
 
 
 
