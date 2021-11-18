@@ -13,3 +13,10 @@ pour l'accéder connexion avec email = admin@admin.fr   mdp = 123
 
 
 VOILA
+
+Objectifs du Projet
+
+1. Personnaliser le contenu envoyé à un client web
+2. Authentifier un utilisateur et maintenir sa session
+3. Gérer un stockage de données à l'aide de SQL
+4. Implémenter un stockage de données sécurisé en utilisant SQL
